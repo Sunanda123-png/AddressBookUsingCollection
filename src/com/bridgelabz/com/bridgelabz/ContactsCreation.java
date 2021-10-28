@@ -109,41 +109,48 @@ public class ContactsCreation {
             System.out.println("Enter following details \n" +
                     "First Name :");
             String firstName = scanner.next();
-            System.out.println("Last Name :");
-            String lastName = scanner.next();
-            System.out.println("Address :");
-            String address = scanner.next();
-            System.out.println("City :");
-            String city = scanner.next();
-            System.out.println("State :");
-            String state = scanner.next();
-            System.out.println("Zip Code :");
-            int zip = scanner.nextInt();
-            System.out.println("Phone Number :");
-            String phonenumber = scanner.next();
-            System.out.println("Email :");
-            String email = scanner.next();
-            Contacts contact=new Contacts();
-            contact.setFirstname(firstName);
-            contact.setLastname(lastName);
-            contact.setAddress(address);
-            contact.setCity(city);
-            contact.setState(state);
-            contact.setZip(zip);
-            contact.setPhonenumber(phonenumber);
-            contact.setEmail(email);
-            contactList.add(contact);
+            int  existingName = searchname(firstName, contactList);
+            if(existingName==-1){
+                System.out.println("Last Name :");
+                String lastName = scanner.next();
+                System.out.println("Address :");
+                String address = scanner.next();
+                System.out.println("City :");
+                String city = scanner.next();
+                System.out.println("State :");
+                String state = scanner.next();
+                System.out.println("Zip Code :");
+                int zip = scanner.nextInt();
+                System.out.println("Phone Number :");
+                String phonenumber = scanner.next();
+                System.out.println("Email :");
+                String email = scanner.next();
+                Contacts contact=new Contacts();
+                contact.setFirstname(firstName);
+                contact.setLastname(lastName);
+                contact.setAddress(address);
+                contact.setCity(city);
+                contact.setState(state);
+                contact.setZip(zip);
+                contact.setPhonenumber(phonenumber);
+                contact.setEmail(email);
+                contactList.add(contact);
+            }
+            else {
+                System.out.println("Allreay exist this name");
+            }
+
         }
         catch (Exception e){
             System.out.println(e);
         }
         return contactList;
     }
-    public int searchname(Scanner scanner, LinkedList<Contacts> contactList) {
+    private int searchname(String searchName, LinkedList<Contacts> contactList) {
         try {
-            String searchName = scanner.next();
+            String searchname = scanner.next();
             for (int index = 0; index < contactList.size(); index++) {
-                if (contactList.get(index).getFirstname().equals(searchName))
+                if (contactList.get(index).getFirstname().equals(searchname))
                     return index;
             }
         } catch (Exception e) {
@@ -155,7 +162,8 @@ public class ContactsCreation {
     public void editContacts(LinkedList<Contacts> contactList) {
         try {
             System.out.println("Enter a name you want to edit...");
-            int name = searchname(scanner, contactList);
+            String searchName = scanner.next();
+            int name = searchname(searchName, contactList);
 
             if (name == -1)
                 System.out.println("Name not found");
@@ -225,7 +233,8 @@ public class ContactsCreation {
     public void deleteContact(LinkedList<Contacts> contactList) {
         try {
             System.out.println("Enter a name you want to delete...");
-            int delete = searchname(scanner, contactList);
+            String searchname = scanner.next();
+            int delete = searchname(searchname, contactList);
 
             if (delete == -1)
                 System.out.println("Name not found");
