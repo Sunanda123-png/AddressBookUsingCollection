@@ -2,6 +2,8 @@ package com.bridgelabz.com.bridgelabz;
 
 import com.bridgelabz.Contacts;
 
+import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -11,9 +13,98 @@ import java.util.Scanner;
  */
 
 public class ContactsCreation {
+    Scanner scanner = new Scanner(System.in);
+
+    public void optionToCreateBook() {
+        try {
+            HashMap<String, LinkedList<Contacts>> contactBook = new HashMap<>();
+
+            while (true) {
+                System.out.println("\nWhat would you like to do? \n" +
+                        "1. Crate new address book \n" +
+                        "2. Continue with existing address book \n" +
+                        "3. All books \n" +
+                        "0. EXIT");
+                int choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        System.out.println("Enter name for Address book");
+                        String newBook = scanner.next();
+                        LinkedList<Contacts> contactList = new LinkedList<>();
+                        optionToCreateContact(contactList, contactBook, newBook);
+                        break;
+
+                    case 2:
+                        System.out.println(contactBook.keySet());
+                        System.out.println("Which address book do you want to access?");
+                        String existingBook = scanner.next();
+
+                        if (contactBook.containsKey(existingBook)) {
+                            contactList = contactBook.get(existingBook);
+                            optionToCreateContact(contactList, contactBook, existingBook);
+                        } else
+                            System.out.println("Book not found");
+                        break;
+
+                    case 3:
+                        int serialNo = 1;
+                        for (String book : contactBook.keySet()) {
+                            System.out.println(serialNo + ". " + book);
+                            serialNo++;
+                        }
+
+                        System.out.println("\n" + contactBook);
+                        break;
+
+                    default:
+                        System.exit(0);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private void optionToCreateContact(LinkedList<Contacts> contactList,
+                                       HashMap<String, LinkedList<Contacts>> contactBook, String addressBook) {
+        try {
+            boolean run = true;
+            while (run) {
+                System.out.println("\nWhat would u like to do with contacts? \n" +
+                        "1. ADD     \n" +
+                        "2. DISPLAY \n" +
+                        "3. EDIT    \n" +
+                        "4. REMOVE  \n" +
+                        "0. EXIT    \n");
+                int choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        LinkedList<Contacts> multiContactInBook = addContacts(contactList);
+                        contactBook.put(addressBook, multiContactInBook);
+                        break;
+                    case 2:
+                        displayContact(contactList);
+                        break;
+                    case 3:
+                        editContacts(contactList);
+                        break;
+                    case 4:
+                        deleteContact(contactList);
+                        break;
+                    default:
+                        run = false;
+                }
+            }
+        } catch (InputMismatchException e) {
+            System.out.println(e);
+        }
+    }
+
 
     //Adding the contact details
-    public LinkedList<Contacts> addContacts(Scanner scanner, LinkedList<Contacts> contactList) {
+    public LinkedList<Contacts> addContacts(LinkedList<Contacts> contactList) {
         try {
             System.out.println("Enter following details \n" +
                     "First Name :");
@@ -61,7 +152,7 @@ public class ContactsCreation {
         return -1;
     }
     //Edit Existing contact details
-    public void editContacts(Scanner scanner, LinkedList<Contacts> contactList) {
+    public void editContacts(LinkedList<Contacts> contactList) {
         try {
             System.out.println("Enter a name you want to edit...");
             int name = searchname(scanner, contactList);
@@ -131,7 +222,7 @@ public class ContactsCreation {
             System.out.println(e);
         }
     }
-    public void deleteContact(Scanner scanner, LinkedList<Contacts> contactList) {
+    public void deleteContact(LinkedList<Contacts> contactList) {
         try {
             System.out.println("Enter a name you want to delete...");
             int delete = searchname(scanner, contactList);
