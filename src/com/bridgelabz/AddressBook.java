@@ -10,5 +10,8 @@ public class AddressBook {
         Scanner scanner=new Scanner(System.in);
         ContactsCreation contactsCreation=new ContactsCreation();
         contactsCreation.addContacts(scanner);
+        contactsCreation.display();
+        contactsCreation.editContact(scanner);
+        contactsCreation.display();
     }
 }
