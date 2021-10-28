@@ -13,5 +13,7 @@ public class AddressBook {
         contactsCreation.display();
         contactsCreation.editContact(scanner);
         contactsCreation.display();
+        contactsCreation.delete(scanner);
+        contactsCreation.display();
     }
 }

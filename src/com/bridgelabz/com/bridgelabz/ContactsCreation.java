@@ -28,7 +28,7 @@ public class ContactsCreation {
             System.out.println("Zip Code :");
             int zip = scanner.nextInt();
             System.out.println("Phone Number :");
-            long phonenumber = scanner.nextLong();
+            String phonenumber = scanner.next();
             System.out.println("Email :");
             String email = scanner.next();
 
@@ -91,8 +91,8 @@ public class ContactsCreation {
 
             case 7:
                 System.out.println("Enter new Phone Number");
-                long newPhoneNo = scanner.nextLong();
-                contact.setPhonenumber(newPhoneNo);
+                String newPhonenumber = scanner.next();
+                contact.setPhonenumber(newPhonenumber);
                 break;
 
             case 8:
@@ -101,6 +101,21 @@ public class ContactsCreation {
                 contact.setEmail(newEmail);
                 break;
         }
+    }
+    public void delete(Scanner scanner){
+        System.out.println("Enter the name you want to delete:-");
+        String name=scanner.next();
+        if (name.equals(contact.getFirstname()))
+        {
+            contact.setFirstname(null);
+            contact.setLastname(null);
+            contact.setAddress(null);
+            contact.setCity(null);
+            contact.setState(null);
+            contact.setPhonenumber(null);
+            contact.setEmail(null);
+        }
+
     }
     //Display all the details of contact
     public void display(){

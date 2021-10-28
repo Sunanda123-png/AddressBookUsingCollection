@@ -8,7 +8,7 @@ public class Contacts {
     private String state;
     private String email;
     private int zip;
-    private long phonenumber;
+    private String phonenumber;
 
     //define getter and setter method
     public String getFirstname() {
@@ -67,11 +67,11 @@ public class Contacts {
         this.zip = zip;
     }
 
-    public long getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(long phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 }
