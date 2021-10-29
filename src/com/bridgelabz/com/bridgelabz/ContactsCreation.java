@@ -22,6 +22,7 @@ public class ContactsCreation {
                         "2. Continue with existing address book \n" +
                         "3. All books \n" +
                         "4. search location \n" +
+                        "5. Contact number \n" +
                         "0. EXIT");
                 int choice = scanner.nextInt();
 
@@ -59,7 +60,11 @@ public class ContactsCreation {
                         String nameForLocation = scanner.next();
                         System.out.println(searchInLocation(nameForLocation));
                         break;
-
+                    case 5:
+                        System.out.println("Enter First Name");
+                        String nameForContact = scanner.next();
+                        getContactNo(nameForContact);
+                        break;
 
                     default:
                         System.exit(0);
@@ -139,6 +144,23 @@ public class ContactsCreation {
             System.out.println(e);
         }
         return contactList;
+    }
+    private void getContactNo(String nameForContact) {
+        try {
+            for (String keyOfBook : contactBook.keySet()) {
+                for (int index = 0; index < contactBook.get(keyOfBook).size(); index++) {
+                    if (contactBook.get(keyOfBook).get(index).getFirstname().equals(nameForContact)) {
+
+                        String lastName = contactBook.get(keyOfBook).get(index).getLastname();
+                        String phoneNo = contactBook.get(keyOfBook).get(index).getPhonenumber();
+
+                        System.out.println(keyOfBook + " : " + nameForContact + " " + lastName + " --> " + phoneNo);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     public Hashtable<String, List<String>> searchInLocation(String nameForLocation) {
         try {
