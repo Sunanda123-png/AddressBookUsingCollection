@@ -10,6 +10,8 @@ public class Contacts {
     private int zip;
     private String phonenumber;
 
+
+
     //define getter and setter method
     public String getFirstname() {
         return firstname;
@@ -74,5 +76,19 @@ public class Contacts {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
+    @Override
+    public String toString() {
+        return "Contacts{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", email='" + email + '\'' +
+                ", zip=" + zip +
+                ", phonenumber='" + phonenumber + '\'' +
+                '}';
+    }
+
 }
 
