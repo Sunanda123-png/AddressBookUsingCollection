@@ -21,6 +21,7 @@ public class ContactsCreation {
                         "1. Crate new address book \n" +
                         "2. Continue with existing address book \n" +
                         "3. All books \n" +
+                        "4. search location \n" +
                         "0. EXIT");
                 int choice = scanner.nextInt();
 
@@ -157,6 +158,7 @@ public class ContactsCreation {
                 if (!contactList.isEmpty())
                     searchResult.put(keyOfBook, contactList);
             }
+            System.out.println(searchResult);
             return searchResult;
         } catch (Exception e) {
             System.out.println(e);
