@@ -283,8 +283,7 @@ public class ContactsCreation {
         while (run) {
             System.out.println("How Would you like to sort\n" +
                     "1. By Firstname\n" +
-                    "2. By State\n" +
-                    "3. By Zip\n" +
+                    "2. By Zip\n" +
                     "0. EXIT");
             int choice = scanner.nextInt();
             switch (choice) {
@@ -293,6 +292,14 @@ public class ContactsCreation {
                         contactBook.get(keyOfBook)
                                 .stream()
                                 .sorted(Comparator.comparing(Contacts::getFirstname))
+                                .forEach(System.out::println);
+                    });
+                    break;
+                case 2:
+                    contactBook.keySet().forEach(keyOfBook -> {
+                        contactBook.get(keyOfBook)
+                                .stream()
+                                .sorted(Comparator.comparing(Contacts::getZip))
                                 .forEach(System.out::println);
                     });
                     break;
