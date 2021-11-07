@@ -1,0 +1,3 @@
+
+Friends --->
+Contacts{firstname='SUnanda', lastname='Shil', address='Tilapatty', city='giwahati', state='assam', email='ssunanda02@gmail.com', zip=784115, phonenumber='7578061886'}Contacts{firstname='Rahul', lastname='Saha', address='Beltoli', city='guwahati', state='assam', email='rahulxaha55@gmail.com', zip=784115, phonenumber='7578061887'}

@@ -1,5 +1,6 @@
 package com.bridgelabz.com.bridgelabz;
 
+import com.bridgelabz.AddressBookIO;
 import com.bridgelabz.Contacts;
 
 import java.util.*;
@@ -12,6 +13,7 @@ import java.util.*;
 public class ContactsCreation {
     static Scanner scanner = new Scanner(System.in);
     Map<String, List<Contacts>> contactBook = new HashMap<>();
+    AddressBookIO addressBookIO = new AddressBookIO();
     public void optionToCreateBook() {
         try {
             while (true) {
@@ -34,6 +36,7 @@ public class ContactsCreation {
                             System.out.println("Book already exists");
                         else
                             optionToCreateContact(contactList, contactBook, newBook);
+                        addressBookIO.writeContactInfo(contactBook);
                         break;
 
                     case 2:
@@ -75,7 +78,7 @@ public class ContactsCreation {
             System.out.println(e);
         }
     }
-    private void optionToCreateContact(List<Contacts> contactList, Map<String, List<Contacts>> addressBook, String newBook) {
+    private void optionToCreateContact(List<Contacts> contactList, Map<String, List<Contacts>> contactBook, String newBook) {
         try {
             boolean run = true;
             while (run) {
@@ -105,6 +108,7 @@ public class ContactsCreation {
                         run = false;
                 }
             }
+            addressBookIO.writeContactInfo(contactBook);
         } catch (InputMismatchException e) {
             System.out.println(e);
         }
